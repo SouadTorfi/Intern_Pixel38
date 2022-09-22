@@ -1,0 +1,39 @@
+.loginPage {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  max-width: 475px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  width: 40%;
+  transform: translate(-50%, -50%);
+}
+
+.loginPage h2 {
+  background-color: #8abfd6;
+  text-align: center;
+}
+
+.loginForm {
+  width: 100%;
+  padding: 2em;
+}
+
+.loginForm input {
+  display: block;
+  margin: auto auto;
+  width: 100%;
+  margin-bottom: 2em;
+  border: none;
+  border-bottom: 1px solid #6c6a6a;
+  padding: 10px 10px;
+}
+
+.loginbtn {
+  background-color: #8abfd6;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  margin-left: 40%;
+}
