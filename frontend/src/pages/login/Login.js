@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.css";
 import { useQuery, gql } from "@apollo/client";
 
-const GET_Users = gql`
+const GET_USERS = gql`
   {
     users {
       name
@@ -11,7 +11,7 @@ const GET_Users = gql`
   }
 `;
 function Login() {
-  const { data, error } = useQuery(GET_Users);
+  const { data, error } = useQuery(GET_USERS);
   console.log("data", data);
   console.log("error", error);
 
