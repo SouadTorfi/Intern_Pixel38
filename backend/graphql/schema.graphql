@@ -15,9 +15,14 @@ type User {
 type Query {
     user(id: ID! @eq): User @find
     users: [User!]! @all
-  
 }
+type Mutation {
+    createuser(
+        name: String!
+        email: String! @rules(apply: ["email", "unique:users"])
+        password: String! @hash @rules(apply: ["min:6"])
+    ): User @create
 
-type Mutation{
-    login(email: String!,password: String!): String!;
+    login(email: String!, password: String!): String!
+        @field(resolver: "Login@__invoke")
 }
