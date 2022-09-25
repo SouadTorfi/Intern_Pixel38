@@ -1,42 +1,33 @@
 import React from "react";
 import "./Login.css";
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const GET_USERS = gql`
-  mutation GetUser {
-    users {
-      email
-      password
-    }
+const LOGIN_MUTATION = gql`
+  mutation LoginMutation($email: String!, $password: String!) {
+    login(email: $email, password: $password)
   }
 `;
 function Login() {
   const navigate = useNavigate();
-  const [GetUser, { data, error }] = useMutation(GET_USERS);
-
-  const [login, setLogin] = useState({
+  const [LoginMutation] = useMutation(LOGIN_MUTATION);
+  const [formState, setFormState] = useState({
     email: "",
     password: "",
   });
 
-  const loginHandleChange = (e) => {
-    let { name, value } = e.target;
-
-    setLogin({ ...login, [name]: value });
-  };
-
   const loginHandleSubmit = (e) => {
     e.preventDefault();
-    GetUser({
+    LoginMutation({
       variables: {
-        email: login.email,
-        password: login.password,
-      
+        email: formState.email,
+        password: formState.password,
+      },
+      onCompleted: ({ signup }) => {
+        navigate("/dashboard");
       },
     });
-  navigate("/home")
   };
 
   return (
@@ -48,15 +39,25 @@ function Login() {
             type="text"
             placeholder="email"
             name="email"
-            onChange={loginHandleChange}
-            value={login.email}
+            value={formState.email}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                email: e.target.value,
+              })
+            }
           />
           <input
             type="password"
             placeholder="password"
             name="password"
-            onChange={loginHandleChange}
-            value={login.password}
+            value={formState.password}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                password: e.target.value,
+              })
+            }
           />
           <button type="submit" className="loginbtn">
             Login
