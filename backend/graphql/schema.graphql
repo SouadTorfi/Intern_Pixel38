@@ -1,28 +1,109 @@
 "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-05-23 13:43:32`."
 scalar DateTime
     @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+#User
 
 type User {
     id: ID
-    name: String
+    first_name: String
+    last_name: String
     email: String
     email_verified_at: DateTime
+    password: String
+    kpi: Kpi
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+type Admin {
+    id: ID
+    first_name: String
+    last_name: String
+    email: String
+    password: String
+    created_at: DateTime
+    updated_at: DateTime
+}
+type Manager {
+    id: ID
+    first_name: String
+    last_name: String
+    email: String
     password: String
     created_at: DateTime
     updated_at: DateTime
 }
 
+type Kpi {
+    id: ID
+    name: String
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+type Task {
+    id: ID
+    title: String
+    in_progress: Boolean
+    user: User
+}
+
+type Project {
+    id: ID
+    title: String
+    description: String
+    user: User
+    manager: Manager
+    created_at: DateTime
+    updated_at: DateTime
+}
 type Query {
+    #user
     user(id: ID! @eq): User @find
     users: [User!]! @all
+
+    #admin
+    admin(id: ID! @eq): Admin @find
+    admins: [Admin!]! @all
+
+    #manager
+    manager(id: ID! @eq): Manager @find
+    managers: [Manager!]! @all
+
+    #task
+    task(id: ID! @eq): Task @find
+    tasks: [Task!]! @all
+
+    #role
+    kpi(id: ID! @eq): Kpi @find
+    kpis: [Kpi!]! @all
+
+    #project
+    project(id: ID! @eq): Project @find
+    projects: [Project!]! @all
 }
+
 type Mutation {
-    createuser(
-        name: String!
+    #user
+    login(email: String!, password: String!): String!
+        @field(resolver: "Login@__invoke")
+
+    #admin
+    adminlogin(email: String!, password: String!): String!
+        @field(resolver: "AdminLogin@__invoke")
+
+    #manager
+    managerlogin(email: String!, password: String!): String!
+        @field(resolver: "ManagerLogin@__invoke")
+    #CreateUser
+    createUser(
+        first_name: String!
+        last_name: String!
+        kpi_id: ID
         email: String! @rules(apply: ["email", "unique:users"])
         password: String! @hash @rules(apply: ["min:6"])
     ): User @create
 
-    login(email: String!, password: String!): String!
-        @field(resolver: "Login@__invoke")
+    #createKpi
+    createKpi(name: String!): Kpi @create
 }
