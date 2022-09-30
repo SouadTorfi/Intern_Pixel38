@@ -10,33 +10,15 @@ type User {
     email: String
     email_verified_at: DateTime
     password: String
-    kpi: Kpi
+    role: Role @hasMany
     created_at: DateTime
     updated_at: DateTime
 }
 
-type Admin {
-    id: ID
-    first_name: String
-    last_name: String
-    email: String
-    password: String
-    created_at: DateTime
-    updated_at: DateTime
-}
-type Manager {
-    id: ID
-    first_name: String
-    last_name: String
-    email: String
-    password: String
-    created_at: DateTime
-    updated_at: DateTime
-}
-
-type Kpi {
+type Role {
     id: ID
     name: String
+    guard_name: String
     created_at: DateTime
     updated_at: DateTime
 }
@@ -53,7 +35,6 @@ type Project {
     title: String
     description: String
     user: User
-    manager: Manager
     created_at: DateTime
     updated_at: DateTime
 }
@@ -62,21 +43,13 @@ type Query {
     user(id: ID! @eq): User @find
     users: [User!]! @all
 
-    #admin
-    admin(id: ID! @eq): Admin @find
-    admins: [Admin!]! @all
-
-    #manager
-    manager(id: ID! @eq): Manager @find
-    managers: [Manager!]! @all
-
     #task
     task(id: ID! @eq): Task @find
     tasks: [Task!]! @all
 
     #role
-    kpi(id: ID! @eq): Kpi @find
-    kpis: [Kpi!]! @all
+    role(id: ID! @eq): Role @find
+    roles: [Role!]! @all
 
     #project
     project(id: ID! @eq): Project @find
@@ -88,22 +61,27 @@ type Mutation {
     login(email: String!, password: String!): String!
         @field(resolver: "Login@__invoke")
 
-    #admin
-    adminlogin(email: String!, password: String!): String!
-        @field(resolver: "AdminLogin@__invoke")
-
-    #manager
-    managerlogin(email: String!, password: String!): String!
-        @field(resolver: "ManagerLogin@__invoke")
     #CreateUser
     createUser(
         first_name: String!
         last_name: String!
-        kpi_id: ID
+        role_id: ID
         email: String! @rules(apply: ["email", "unique:users"])
         password: String! @hash @rules(apply: ["min:6"])
     ): User @create
 
-    #createKpi
-    createKpi(name: String!): Kpi @create
+    #Createproject
+    createProject(title: String!, description: String!, user_id: ID): Project
+        @create
+
+    #CreateRole
+    createRole(name: String!, guard_name: String): Role @create
+
+    deleteUser(id: ID!): User @delete
+    deleteProject(id: ID!): Project @delete
+    deleteRole(id: ID!): Role @delete
+
+    updateUser(id: ID!, first_name: String): User @update
+    updateProject(id: ID!, title: String): User @update
+    updateRole(id: ID!, title: String): Role @update
 }

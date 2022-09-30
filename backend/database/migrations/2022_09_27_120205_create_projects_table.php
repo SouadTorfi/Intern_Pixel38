@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
             $table->integer('user_id')->unsigned()->nullable();
-            $table->integer('manager_id')->unsigned()->nullable();
         });
     }
 
@@ -33,7 +32,6 @@ return new class extends Migration
         Schema::dropIfExists('projects');
         Schema::table('priorities', function ($table) {
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
-            $table->foreign('manager_id')->references('id')->on('managers')->onDelete('cascade');
         });
     }
 };

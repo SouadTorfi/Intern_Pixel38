@@ -15,11 +15,22 @@ class ProjectSeeder extends Seeder
     public function run()
     {
 
+
         DB::table('projects')->insert([
             'title' => 'project 1',
             'description' => 'header,footer',
             'user_id' => 1,
-            'manager_id' => 1,
+          
+
+
+        ]);
+
+
+        DB::table('projects')->insert([
+            'title' => 'project 2',
+            'description' => 'header,footer',
+            'user_id' => 1,
+        
 
 
         ]);

@@ -2,29 +2,29 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
     public function Task()
     {
         return $this->hasMany(Task::class);
     }
 
-    public function Kpi()
+    public function Role()
     {
-        return $this->belongsTo(Kpi::class);
+        return $this->belongsTo(Role::class);
     }
     public function Project()
     {
         return $this->hasMany(Project::class);
     }
-        public function User()
+    public function User()
     {
         return $this->hasMany(User::class);
     }
