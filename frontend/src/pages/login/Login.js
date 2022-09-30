@@ -25,6 +25,7 @@ function Login() {
         password: formState.password,
       },
       onCompleted: ({ signup }) => {
+        localStorage.setItem("token", formState.token);
         navigate("/dashboard");
       },
     });

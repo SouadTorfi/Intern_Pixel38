@@ -1,0 +1,138 @@
+.add-user {
+  margin-left: 355px;
+  padding-top: 3%;
+}
+#addUser-container {
+  max-width: 768px;
+  margin: 60px auto;
+  position: relative;
+}
+
+#addUser-container form {
+  padding: 36px;
+  margin: 50px 0;
+}
+
+#addUser-container h1 {
+  color: #6b93ec;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.addUser-underline {
+  border-bottom: solid 2px #6b93ec;
+  margin: -0.312em auto;
+  width: 200px;
+}
+
+.addUser-telephone {
+  float: right;
+  width: 45%;
+}
+.addUser-email {
+  width: 100%;
+}
+
+#addUser-container input[type="text"],
+#addUser-container [type="email"] {
+  border: none;
+  border-bottom: solid 2px #6b93ec;
+  color: #3b3b3b;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0em 0 1.875em 0;
+  padding: 0 0 0.875em 0;
+  width: 100%;
+}
+
+#addUser-container input[type="text"]:focus,
+#addUser-container [type="email"]:focus {
+  outline: none;
+}
+
+.addUser-name {
+  float: left;
+  width: 45%;
+}
+
+.addUser-email input::placeholder {
+  color: #6b93ec;
+}
+.addUser-telephone input::placeholder {
+  color: #6b93ec;
+}
+
+.addUser-name input::placeholder {
+  color: #6b93ec;
+}
+
+#form_button-addUser {
+  background: none;
+  border: solid 2px #6b93ec;
+  color: #6b93ec;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 0.875em;
+  font-weight: bold;
+  outline: none;
+  padding: 20px 35px;
+  text-transform: uppercase;
+  border-radius: 15px;
+}
+
+#form_button-addUser:hover {
+  background: #6b93ec;
+  color: #f2f3eb;
+}
+.select-role {
+  margin-bottom: 10px;
+  padding: 5px;
+  font-size: 17px;
+  background-color: #407bff;
+}
+
+@media screen and (max-width: 960px) {
+  .add-admin {
+    margin-left: 5px;
+    padding-top: 60px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .add-admin {
+    margin-left: 5px;
+    padding-top: 60px;
+  }
+  #addUser-container {
+    margin: 20px auto;
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #addUser-container h1 {
+    font-size: 26px;
+  }
+
+  #form_button-addUser {
+    padding: 15px 25px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #addUser-container h1 {
+    font-size: 18px;
+  }
+
+  .addUser-underline {
+    width: 130px;
+  }
+
+  #addUser-container input[type="text"],
+  #addUser-container input[type="email"] {
+    font-size: 0.875em;
+  }
+}

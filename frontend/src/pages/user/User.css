@@ -1,0 +1,61 @@
+.user-page {
+  margin-left: 355px;
+  padding-top: 100px;
+}
+
+#users-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 99%;
+  margin-bottom: 5%;
+}
+
+#users-table td,
+#users-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#users-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#users-table tr:hover {
+  background-color: #ddd;
+}
+
+#users-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #2c06eb;
+  color: white;
+}
+
+.add-user-btn {
+  border: none;
+  background-color: #407bff;
+  padding: 10px 25px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.add-user-btn:hover {
+  background-color: #6b93ec;
+}
+
+@media only screen and (max-width: 975px) {
+  .user-page {
+    margin-left: 5px;
+    padding-top: 100px;
+  }
+}
+
+@media all and (max-width: 767px) {
+  .user-page {
+    margin-left: 0px;
+    padding-top: 100px;
+  }
+}
